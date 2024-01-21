@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
+from django.conf import settings
 
 
 class Area(models.Model):
@@ -26,7 +27,7 @@ class Listing(models.Model):
     title = models.CharField(max_length=250)
     description = models.TextField()
     published = models.DateTimeField(default=timezone.now)
-    landlord = models.ForeignKey(User, on_delete=models.CASCADE)
+    landlord = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     status = models.CharField(choices=options, default='published', max_length=25), 
     rooms = models.IntegerField()
     size = models.IntegerField()
