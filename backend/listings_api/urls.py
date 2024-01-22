@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import AllListings, SingleListing
 
-app_name = 'blog_api'
+app_name = 'listings_api'
 
 urlpatterns = [
     path('<int:pk>/', SingleListing.as_view(), name='detailcreate'),
