@@ -15,14 +15,15 @@ class Listing(models.Model):
 
     class ListingsObjects(models.Manager):
         def get_queryset(self):
-            return super().get_queryset() .filter(status='published')
+            return super().get_queryset()
 
     options = (
         ('draft', 'Draft'),
         ('published', 'Published'),
         ('filtered', 'Filtered'),
-        ('let', 'Let'),
+        ('rented', 'Rented'),
     )
+    
     area = models.ForeignKey(Area, on_delete=models.PROTECT, default=1)
     title = models.CharField(max_length=250)
     description = models.TextField()

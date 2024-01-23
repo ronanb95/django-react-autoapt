@@ -1,3 +1,4 @@
+from django.contrib.auth.models import Group
 from rest_framework import serializers
 from users_api.models import NewUser
 
@@ -15,5 +16,8 @@ class CustomUserSerializer(serializers.ModelSerializer):
         instance = self.Meta.model(**validated_data)
         if password is not None:
             instance.set_password(password)
+        #customers = Group.objects.get("customers")
+        #instance.groups.set[customers]
+
         instance.save()
         return instance
