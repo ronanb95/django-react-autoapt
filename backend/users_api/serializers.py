@@ -16,8 +16,10 @@ class CustomUserSerializer(serializers.ModelSerializer):
         instance = self.Meta.model(**validated_data)
         if password is not None:
             instance.set_password(password)
-        #customers = Group.objects.get("customers")
-        #instance.groups.set[customers]
 
         instance.save()
+       
+        customers_group, created = Group.objects.get_or_create(name='customers')
+        instance.groups.add(customers_group)
+
         return instance
